@@ -1,10 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Collections.Generic; 
 using System.Net;
 using System.Net.Http;
 using System.Data;
 using System.Web.Http;
+using System.Web;
+
 
 namespace WebAPI_Train.Controllers
 {
@@ -26,6 +27,7 @@ namespace WebAPI_Train.Controllers
                 DataRow dw = d.Rows[0];
                 if (login.pwd == dw["Password"].ToString())
                 {
+                    HttpContext.Current.Session["User_ID"] = dw["User_ID"].ToString();
                     result = 1;
                 }
                 else
